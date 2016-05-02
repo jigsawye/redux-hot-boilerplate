@@ -1,4 +1,4 @@
-react-hot-boilerplate
+redux-hot-boilerplate
 =====================
 
 ### Usage
