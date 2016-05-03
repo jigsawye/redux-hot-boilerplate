@@ -36,7 +36,7 @@
   "ava": {
     "files": "src/**/__tests__",
     "require": [
-      "babel-register"
+      "babel-core/register"
     ],
     "babel": "inherit"
   },
