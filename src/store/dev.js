@@ -12,7 +12,7 @@ const logger = createLogger({
 
 const router = routerMiddleware(browserHistory);
 
-export default function configureStore(initialState) {
+export default initialState => {
   const store = createStore(
     reducer,
     initialState,
@@ -27,4 +27,4 @@ export default function configureStore(initialState) {
   }
 
   return store;
-}
+};

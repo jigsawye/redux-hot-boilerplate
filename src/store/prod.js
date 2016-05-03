@@ -6,10 +6,8 @@ import reducer from '../modules/reducer';
 
 const router = routerMiddleware(browserHistory);
 
-export default function configureStore(initialState) {
-  return createStore(
-    reducer,
-    initialState,
-    applyMiddleware(apiMiddleware, router)
-  );
-}
+export default initialState => createStore(
+  reducer,
+  initialState,
+  applyMiddleware(apiMiddleware, router)
+);

@@ -9,13 +9,13 @@ import App from './containers/App';
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
-const rootEl = document.getElementById('root');
+const rootElement = document.getElementById('root');
 
 render(
   <AppContainer>
     <App store={store} history={history} />
   </AppContainer>,
-  rootEl
+  rootElement
 );
 
 if (module.hot) {
@@ -25,7 +25,7 @@ if (module.hot) {
       <AppContainer>
         <NextApp store={store} history={history} />
       </AppContainer>,
-      rootEl
+      rootElement
     );
   });
 }
