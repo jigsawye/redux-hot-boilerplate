@@ -8,13 +8,6 @@ test('addTodo should create ADD_TODO action', t => {
   });
 });
 
-test('setVisibilityFilter should create SET_VISIBILITY_FILTER action', t => {
-  t.deepEqual(actions.setVisibilityFilter('active'), {
-    type: 'SET_VISIBILITY_FILTER',
-    payload: { filter: 'active' },
-  });
-});
-
 test('toggleTodo should create TOGGLE_TODO action', t => {
   t.deepEqual(actions.toggleTodo(1), {
     type: 'TOGGLE_TODO',
