@@ -1,28 +1,22 @@
 import { createAction, handleActions } from 'redux-actions';
+const ADD_TODO = 'ADD_TODO';
+const TOGGLE_TODO = 'TOGGLE_TODO';
 
 let nextTodoId = 0;
 
 export const addTodo = createAction(
-  'ADD_TODO',
+  ADD_TODO,
   text => ({ id: nextTodoId++, text })
 );
 
-export const setVisibilityFilter = createAction(
-  'SET_VISIBILITY_FILTER',
-  filter => ({ filter })
-);
-
-export const toggleTodo = createAction(
-  'TOGGLE_TODO',
-  id => ({ id })
-);
+export const toggleTodo = createAction(TOGGLE_TODO);
 
 const todo = handleActions({
-  ADD_TODO: (state, { payload: { id, text } }) => ({
+  [ADD_TODO]: (state, { payload: { id, text } }) => ({
     id, text, completed: false,
   }),
-  TOGGLE_TODO: (state, { payload: { id } }) => {
-    if (state.id !== id) {
+  [TOGGLE_TODO]: (state, { payload }) => {
+    if (state.id !== payload) {
       return state;
     }
 
@@ -34,11 +28,11 @@ const todo = handleActions({
 });
 
 export default handleActions({
-  ADD_TODO: (state, action) => ([
+  [ADD_TODO]: (state, action) => ([
     ...state,
     todo(undefined, action),
   ]),
-  TOGGLE_TODO: (state, action) => state.map(
+  [TOGGLE_TODO]: (state, action) => state.map(
     t => todo(t, action)
   ),
 }, []);
