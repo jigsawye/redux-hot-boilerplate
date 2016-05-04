@@ -9,17 +9,14 @@ export const addTodo = createAction(
   text => ({ id: nextTodoId++, text })
 );
 
-export const toggleTodo = createAction(
-  TOGGLE_TODO,
-  id => ({ id })
-);
+export const toggleTodo = createAction(TOGGLE_TODO);
 
 const todo = handleActions({
   [ADD_TODO]: (state, { payload: { id, text } }) => ({
     id, text, completed: false,
   }),
-  [TOGGLE_TODO]: (state, { payload: { id } }) => {
-    if (state.id !== id) {
+  [TOGGLE_TODO]: (state, { payload }) => {
+    if (state.id !== payload) {
       return state;
     }
 

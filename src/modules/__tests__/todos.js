@@ -11,7 +11,7 @@ test('addTodo should create ADD_TODO action', t => {
 test('toggleTodo should create TOGGLE_TODO action', t => {
   t.deepEqual(actions.toggleTodo(1), {
     type: 'TOGGLE_TODO',
-    payload: { id: 1 },
+    payload: 1,
   });
 });
 
@@ -112,9 +112,7 @@ test('should handle TOGGLE_TODO', t => {
       },
     ], {
       type: 'TOGGLE_TODO',
-      payload: {
-        id: 1,
-      },
+      payload: 1,
     }),
     [
       {
