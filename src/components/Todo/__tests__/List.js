@@ -2,15 +2,16 @@ import test from 'ava';
 import React from 'react';
 import { spy } from 'sinon';
 import { shallow } from 'enzyme';
+import { fromJS } from 'immutable';
 import List from '../List';
 
 const setup = () => {
   const onTodoClick = spy();
-  const todos = [
+  const todos = fromJS([
     { id: 0, completed: false, text: 'first todo' },
     { id: 1, completed: false, text: 'second todo' },
     { id: 2, completed: false, text: 'third todo' },
-  ];
+  ]);
 
   const wrapper = shallow(<List onTodoClick={onTodoClick} todos={todos} />);
 

@@ -1,4 +1,5 @@
 import test from 'ava';
+import { List, fromJS } from 'immutable';
 import todos, * as actions from '../todos';
 
 test('addTodo should create ADD_TODO action', t => {
@@ -16,18 +17,18 @@ test('toggleTodo should create TOGGLE_TODO action', t => {
 });
 
 test('should handle initial state', t => {
-  t.deepEqual(todos(undefined, {}), []);
+  t.deepEqual(todos(undefined, {}), List());
 });
 
 test('should handle ADD_TODO', t => {
   t.deepEqual(
-    todos([], {
+    todos(List(), {
       type: 'ADD_TODO',
       payload: {
         text: 'Run the tests',
         id: 0,
       },
-    }),
+    }).toJS(),
     [{
       text: 'Run the tests',
       completed: false,
@@ -36,19 +37,19 @@ test('should handle ADD_TODO', t => {
   );
 
   t.deepEqual(
-    todos([
+    todos(fromJS([
       {
         text: 'Run the tests',
         completed: false,
         id: 0,
       },
-    ], {
+    ]), {
       type: 'ADD_TODO',
       payload: {
         text: 'Use Redux',
         id: 1,
       },
-    }),
+    }).toJS(),
     [
       {
         text: 'Run the tests',
@@ -63,7 +64,7 @@ test('should handle ADD_TODO', t => {
   );
 
   t.deepEqual(
-    todos([
+    todos(fromJS([
       {
         text: 'Run the tests',
         completed: false,
@@ -73,13 +74,13 @@ test('should handle ADD_TODO', t => {
         completed: false,
         id: 1,
       },
-    ], {
+    ]), {
       type: 'ADD_TODO',
       payload: {
         text: 'Fix the tests',
         id: 2,
       },
-    }),
+    }).toJS(),
     [
       {
         text: 'Run the tests',
@@ -100,7 +101,7 @@ test('should handle ADD_TODO', t => {
 
 test('should handle TOGGLE_TODO', t => {
   t.deepEqual(
-    todos([
+    todos(fromJS([
       {
         text: 'Run the tests',
         completed: false,
@@ -110,10 +111,10 @@ test('should handle TOGGLE_TODO', t => {
         completed: false,
         id: 0,
       },
-    ], {
+    ]), {
       type: 'TOGGLE_TODO',
       payload: 1,
-    }),
+    }).toJS(),
     [
       {
         text: 'Run the tests',
